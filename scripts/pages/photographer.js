@@ -6,3 +6,7 @@ fetch("data/photographers.json")
     console.log("Photographers data:", photographers);
   })
   .catch((error) => console.error("Error fetching data:", error));
+
+function photographerDetails() {
+    
+}

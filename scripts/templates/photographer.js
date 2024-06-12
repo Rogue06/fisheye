@@ -24,12 +24,14 @@ function photographerTemplate(data) {
     h2.textContent = name;
 
     const pCity = document.createElement("p");
+    pCity.className = "photographers-location";
     pCity.textContent = `${city}, ${country}`;
 
     const pTagline = document.createElement("p");
     pTagline.textContent = tagline;
 
     const pPrice = document.createElement("p");
+    pPrice.className = "photographers-price";
     pPrice.textContent = `${price}€ / jour`;
 
     article.appendChild(img);
