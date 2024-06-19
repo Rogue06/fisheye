@@ -1,10 +1,18 @@
 #contact_modal {
     display: none;
 }
+
+.photographer_section {
+   display: flex;
+}
+
 .photographer_section img {
+    width: 200px;
+    height: 200px;
     border-radius: 100px;
     object-fit: cover;
 }
+
 
 .photograph-header {
     background-color: #FAFAFA;
