@@ -13,7 +13,7 @@ function photographerTemplate(data) {
     photographerTemplate(data[i]);
   }
   function getUserCardDOM() {
-    const { city, country, tagline, price } = data; // Récupère les informations du photographe (à vérifier)
+    const { city, country, tagline, price } = data; // Récupère les informations du photographe
 
     const article = document.createElement("article");
 

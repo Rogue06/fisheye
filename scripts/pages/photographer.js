@@ -29,16 +29,25 @@ async function getPhotographerById(id) {
 function displayPhotographerDetails(photographer) {
   const photographerHeader = document.querySelector(".photograph-header");
 
-  // Création d'une div pour contenir les informations du photographe
+  // Création des div pour contenir les informations du photographe
   const photographerInfo = document.createElement("div");
   photographerInfo.classList.add("photographer_section");
   photographerHeader.innerHTML = `
-  <div class="photographer_section">
-    <h1>${photographer.name}</h1>
-    <p>${photographer.city}, ${photographer.country}</p>
-    <p>${photographer.tagline}</p>
-    <p>${photographer.price}€/jour</p>
-    <img src="assets/photographers/${photographer.portrait}" alt="Photo de ${photographer.name}">`;
+    <div class="photographer_section">
+        <div class="photographer_infos">
+            <h1 class="photographer_name">${photographer.name}</h1>
+            <p class="photographer_location">${photographer.city}, ${photographer.country}</p>
+            <p class="photographer_tagline">${photographer.tagline}</p>
+        </div>  
+        <div class="content_button">
+                <button class="contact_button" onclick="displayModal()">
+                Contactez-moi
+            </button>
+        </div>
+        <div class="content_photo">
+            <img src="assets/photographers/${photographer.portrait}" alt="Photo de ${photographer.name}">
+        </div>
+    </div>`;
 
   // Ajout du bouton à l'intérieur de photographerHeader s'il n'est pas déjà présent
   const contactButton = photographerHeader.querySelector(".contact_button");

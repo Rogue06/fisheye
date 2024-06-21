@@ -12,24 +12,34 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
-          Contactez-moi
-        </button>
+        <h1 class="photographer-name">Nom du Photographe</h1>
+        <p class="photographer-location">Ville, Pays</p>
+        <p class="photographer-tagline">Tagline</p>
+        <img
+          class="photographer-portrait"
+          src="assets/photographers/portrait.jpg"
+          alt="Photo de Nom du Photographe"
+        />
       </div>
     </main>
     <div id="contact_modal">
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img
+            src="assets/icons/close.svg"
+            alt="Fermer"
+            onclick="closeModal()"
+          />
         </header>
         <form>
           <div>
-            <label>Prénom</label>
+            <label for="name">Prénom</label>
+            <!-- vérifier l'erreur Achecker-->
             <input />
           </div>
           <button class="contact_button">Envoyer</button>
