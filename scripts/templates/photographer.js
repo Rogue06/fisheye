@@ -8,10 +8,6 @@ function photographerTemplate(data) {
 
   photographerData.push(photographer);
 
-  // Utilisation d'une boucle for pour traiter chaque photographe.
-  for (let i = 0; i < data.lengh; i++) {
-    photographerTemplate(data[i]);
-  }
   function getUserCardDOM() {
     const { city, country, tagline, price } = data; // Récupère les informations du photographe
 
