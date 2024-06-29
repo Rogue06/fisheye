@@ -67,13 +67,11 @@ function createMediaCard(media) {
 
   // Remplir le contenu de la carte média
   mediaCard.innerHTML = `
-    <div class="media_header">
-      <h2 class="media_title">${media.title}</h2>
-    </div>
     <div class="media_body">
       ${mediaContent}
     </div>
-    <div class="media_footer">
+     <div class="media_legend">
+      <h2 class="media_title">${media.title}</h2>
       <span class="media_likes">${media.likes} likes</span>
     </div>
   `;
