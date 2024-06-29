@@ -42,24 +42,24 @@ function displayPhotographerDetails(photographer) {
                 Contactez-moi
             </button>
         </div>
-        <div class="content_photo">
+        <div class="photographer_portrait">
             <img src="assets/photographers/${photographer.portrait}" alt="Photo de ${photographer.name}">
         </div>
     </div>`;
 }
 
 // Fonction pour créer une card pour un media
-function createMediaCard(media, photographerName) {
+function createMediaCard(media) {
   const mediaCard = document.createElement("div");
   mediaCard.classList.add("media_card");
 
   // Créer le contenu du média
   let mediaContent = "";
   if (media.image) {
-    const imagePath = `assets/media/${photographerName}/${media.image}`; // ici je n'ai pas très bien compris comment mettre le bon chemin...
-    mediaContent = `<img src="${imagePath}" alt="${media.title}" class="media_image" onerror="this.onerror=null; this.src='assets/media/default-image.jpg';">`;
+    const imagePath = `../samples_photos/${media.image}`;
+    mediaContent = `<img src="${imagePath}" alt="${media.title}" class="media_image">`;
   } else if (media.video) {
-    const videoPath = `assets/media/${photographerName}/${media.video}`;
+    const videoPath = `samples_photos/${media.video}`;
     mediaContent = `<video controls class="media_video" onerror="this.onerror=null; this.src='assets/media/default-video.mp4';">
                       <source src="${videoPath}" type="video/mp4">
                     </video>`;
@@ -82,12 +82,12 @@ function createMediaCard(media, photographerName) {
 }
 
 // Fonction pour afficher les médias du photographe
-function displayPhotographerMedia(mediaList, photographerName) {
+function displayPhotographerMedia(mediaList, folderName) {
   const mediaContainer = document.querySelector(".factory_medias");
   mediaContainer.innerHTML = "";
 
   mediaList.forEach((media) => {
-    const mediaCard = createMediaCard(media, photographerName);
+    const mediaCard = createMediaCard(media, folderName);
     mediaContainer.appendChild(mediaCard);
   });
 }
@@ -104,6 +104,20 @@ async function getPhotographerMedia(photographerId) {
   }
 }
 
+// Fonctions de tri
+function sortMedia(mediaList, criteria) {
+  switch (criteria) {
+    case "popularity":
+      return mediaList.sort((a, b) => b.likes - a.likes);
+    case "date":
+      return mediaList.sort((a, b) => new Date(b.date) - new Date(a.date));
+    case "title":
+      return mediaList.sort((a, b) => a.title.localeCompare(b.title));
+    default:
+      return mediaList;
+  }
+}
+
 // Intégrer le tout
 async function initPhotographerPage() {
   const photographerId = getPhotographerIdFromUrl();
@@ -111,8 +125,15 @@ async function initPhotographerPage() {
   if (photographer) {
     displayPhotographerDetails(photographer);
 
-    const mediaList = await getPhotographerMedia(photographerId);
-    displayPhotographerMedia(mediaList, photographer.name);
+    let mediaList = await getPhotographerMedia(photographerId);
+    displayPhotographerMedia(mediaList, photographer.folder);
+
+    // Écouteur d'événement pour le menu de tri
+    const sortMenu = document.getElementById("sort-options");
+    sortMenu.addEventListener("change", (event) => {
+      const sortedMedia = sortMedia(mediaList, event.target.value);
+      displayPhotographerMedia(sortedMedia, photographer.folder);
+    });
   } else {
     console.error("Photographer not found");
   }

@@ -71,3 +71,7 @@ h2 {
     color: #901C1C;
     font-size: 1.2em;
 }
+
+.main-navbar {
+    float: right;
+}

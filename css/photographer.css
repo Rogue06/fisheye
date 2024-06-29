@@ -28,17 +28,15 @@ margin : 0 0 0 50px;
 margin-right: 0;
 }
 
-
 .photographer_portrait {
+    margin: 0 auto;
+    margin-top: 55px;
     width: 200px;
     height: 200px;
     border-radius: 100px;
     object-fit: cover;
 }
 
-.content__photo {
-*/ le conteneur de la photo*/
-}
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -60,10 +58,8 @@ margin-right: 0;
 }
 
 .content_button {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 0 100px;
+    margin: 0 auto;
+    margin-top: 110px;
 }
 
 .modal {
@@ -120,3 +116,53 @@ form input {
     border-radius: 5px;
 }
 
+/* factory media */
+.media_title {
+    margin-left: 100px;
+}
+
+.media_image {
+width: 350px;
+height: 300px;
+object-fit: cover;
+}
+
+.media_video {
+width: 350px;
+height: 300px;
+object-fit: cover;
+}
+
+/* menu déroulant */
+
+/* Style du menu déroulant */
+.sort-menu {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.sort-menu label {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #000; /* Couleur du texte du label */
+    margin-left: 100px;
+}
+
+.sort-menu select {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #d36861; /* Couleur de fond du menu déroulant */
+    color: #fff; /* Couleur du texte */
+    text-align: center;
+    text-align-last: center; /* Centrer le texte */
+}
+
+.sort-menu select option {
+    background-color: #a22920; /* Couleur de fond des options */
+    color: #fff; /* Couleur du texte des options */
+    text-align: left; /* Aligner le texte à gauche */
+    padding: 10px;
+}
