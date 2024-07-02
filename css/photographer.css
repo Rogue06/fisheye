@@ -2,6 +2,7 @@
     display: none;
 }
 
+
 .photographer_infos {
     display: flex;
     flex-direction: column;
@@ -47,8 +48,9 @@ font-size: 64px;
 
 .photograph-header {
     background-color: #FAFAFA;
-    height: 300px;
+    height: 100%;
     margin: 0 100px;
+    padding-bottom : 50px;
 }
 
 .content_button button{
@@ -180,20 +182,46 @@ object-fit: cover;
     margin-left: 100px;
 }
 
+/* Style pour le sélecteur */
 .sort-menu select {
     padding: 10px;
     font-size: 16px;
     border: none;
     border-radius: 4px;
-    background-color: #d36861; /* Couleur de fond du menu déroulant */
+    background-color: #901C1C; /* Couleur de fond du sélecteur */
     color: #fff; /* Couleur du texte */
     text-align: center;
     text-align-last: center; /* Centrer le texte */
 }
 
+/* Style pour les options du sélecteur */
 .sort-menu select option {
-    background-color: #a22920; /* Couleur de fond des options */
-    color: #fff; /* Couleur du texte des options */
-    text-align: left; /* Aligner le texte à gauche */
-    padding: 10px;
+  background-color: #901C1C; /* Couleur de fond des options */
+  color: #fff; /* Couleur du texte des options */
+  text-align: left; /* Aligner le texte à gauche */
+  padding: 10px;
 }
+
+
+/* Label */
+
+.infos_label {
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    background-color: #DB8876;
+    padding: 10px 15px;
+    margin: 0;
+    text-align: center;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    margin-left: 100px;
+}
+
+

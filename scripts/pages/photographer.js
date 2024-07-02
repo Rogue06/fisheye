@@ -70,22 +70,44 @@ function createMediaCard(media) {
     <div class="media_body">
       ${mediaContent}
     </div>
-     <div class="media_legend">
+    <div class="media_legend">
       <h2 class="media_title">${media.title}</h2>
-      <span class="media_likes">${media.likes} likes</span>
+      <span class="media_likes">${media.likes} <i class="fa-regular fa-heart like-icon"></i></span>
     </div>
   `;
+
+  // Ajouter l'écouteur d'événement pour l'icône de cœur
+  const likeIcon = mediaCard.querySelector(".like-icon");
+  likeIcon.addEventListener("click", () => {
+    const likesElement = mediaCard.querySelector(".media_likes");
+    let likes = parseInt(likesElement.textContent.trim().split(" ")[0]);
+
+    if (likeIcon.classList.contains("fa-regular")) {
+      likeIcon.classList.remove("fa-regular");
+      likeIcon.classList.add("fa-solid");
+      likes++;
+    } else {
+      likeIcon.classList.remove("fa-solid");
+      likeIcon.classList.add("fa-regular");
+      likes--;
+    }
+
+    likesElement.innerHTML = `${likes} <i class="fa-${
+      likeIcon.classList.contains("fa-solid") ? "solid" : "regular"
+    } fa-heart like-icon"></i>`;
+    updateTotalLikes();
+  });
 
   return mediaCard;
 }
 
 // Fonction pour afficher les médias du photographe
-function displayPhotographerMedia(mediaList, folderName) {
+function displayPhotographerMedia(mediaList) {
   const mediaContainer = document.querySelector(".factory_medias");
   mediaContainer.innerHTML = "";
 
   mediaList.forEach((media) => {
-    const mediaCard = createMediaCard(media, folderName);
+    const mediaCard = createMediaCard(media);
     mediaContainer.appendChild(mediaCard);
   });
 }
@@ -116,6 +138,30 @@ function sortMedia(mediaList, criteria) {
   }
 }
 
+// Mettre à jour le total des likes
+function updateTotalLikes() {
+  const mediaLikes = document.querySelectorAll(".media_likes");
+  let totalLikes = 0;
+
+  mediaLikes.forEach((likeElement) => {
+    const likes = parseInt(likeElement.textContent.trim().split(" ")[0]);
+    totalLikes += likes;
+  });
+
+  const photographerId = getPhotographerIdFromUrl();
+  getPhotographerById(photographerId).then((photographer) => {
+    const infosLabel = document.querySelector(".infos_label");
+    infosLabel.innerHTML = `
+      <div>
+        ${totalLikes} <i class="fa-solid fa-heart"></i>
+      </div>
+      <div>
+        ${photographer.price}€ / jour
+      </div>
+    `;
+  });
+}
+
 // Intégrer le tout
 async function initPhotographerPage() {
   const photographerId = getPhotographerIdFromUrl();
@@ -125,6 +171,7 @@ async function initPhotographerPage() {
 
     let mediaList = await getPhotographerMedia(photographerId);
     displayPhotographerMedia(mediaList, photographer.folder);
+    updateTotalLikes();
 
     // Écouteur d'événement pour le menu de tri
     const sortMenu = document.getElementById("sort-options");
