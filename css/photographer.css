@@ -235,3 +235,44 @@ object-fit: cover;
 }
 
 
+/* Modal */
+
+#message {
+    height: 300px;
+}
+
+label{
+
+    margin-top: 30px;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+}
+
+header h2, img {
+    margin: 0;
+
+}
+
+.contact_button {
+    background-color: #901C1C;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.formData {
+margin: 0;
+}
+
+.photograph_name {
+    font-size: 64px;
+}
+

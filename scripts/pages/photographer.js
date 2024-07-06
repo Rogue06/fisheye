@@ -48,6 +48,12 @@ function displayPhotographerDetails(photographer) {
     </div>`;
 }
 
+// Fonction pour afficher le nom du photographe dans la modale de contact
+function displayPhotographerNameInModal(photographer) {
+  const photographName = document.querySelector(".photograph_name");
+  photographName.textContent = photographer.name;
+}
+
 // Fonction pour créer une card pour un media
 function createMediaCard(media) {
   const mediaCard = document.createElement("div");
@@ -168,6 +174,7 @@ async function initPhotographerPage() {
   const photographer = await getPhotographerById(photographerId);
   if (photographer) {
     displayPhotographerDetails(photographer);
+    displayPhotographerNameInModal(photographer); // Afficher le nom du photographe dans la modale de contact
 
     let mediaList = await getPhotographerMedia(photographerId);
     displayPhotographerMedia(mediaList, photographer.folder);
