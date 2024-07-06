@@ -2,6 +2,13 @@
     display: none;
 }
 
+.modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 .photographer_infos {
     display: flex;
@@ -132,7 +139,10 @@ form input {
     margin: 0;
 }
 .media_likes {
+    display: flex;
+    align-items: center;
     font-size: 24px;
+    gap: 10px;
 }
 .media_legend {
     width: 350px;
