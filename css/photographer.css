@@ -242,9 +242,9 @@ object-fit: cover;
 }
 
 label{
-
-    margin-top: 30px;
+/* */
 }
+
 header {
     display: flex;
     flex-direction: column;
@@ -254,7 +254,6 @@ header {
 
 header h2, img {
     margin: 0;
-
 }
 
 .contact_button {
@@ -274,5 +273,6 @@ margin: 0;
 
 .photograph_name {
     font-size: 64px;
+    margin-bottom: 30px;
 }
 

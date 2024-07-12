@@ -78,12 +78,19 @@ function createMediaCard(media) {
     </div>
     <div class="media_legend">
       <h2 class="media_title">${media.title}</h2>
-      <span class="media_likes">${media.likes} <i class="fa-regular fa-heart like-icon"></i></span>
+      <span class="media_likes"><span class="media_likes_total">${media.likes}</span><i class="fa-regular fa-heart like-icon"></i></span>
     </div>
   `;
 
-  // Ajouter l'écouteur d'événement pour l'icône de cœur
+  // état initial
+  let isLiked = false;
+  let totalLikes = media.likes;
+
+  // éléments à mettre à jour dans l'interface
+  const likesTotal = mediaCard.querySelector(".media_likes_total");
   const likeIcon = mediaCard.querySelector(".like-icon");
+
+  // Ajouter l'écouteur d'événement pour l'icône de cœur
   likeIcon.addEventListener("click", () => {
     const likesElement = mediaCard.querySelector(".media_likes");
     let likes = parseInt(likesElement.textContent.trim().split(" ")[0]);
