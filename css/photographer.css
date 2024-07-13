@@ -2,14 +2,6 @@
     display: none;
 }
 
-.modal{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-
 .photographer_infos {
     display: flex;
     flex-direction: column;
@@ -88,6 +80,10 @@ font-size: 64px;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .modal header {
@@ -105,6 +101,7 @@ font-size: 64px;
     text-align: center;
 }
 
+/* Form Style */
 form {
     display: flex;
     width: 100%;
@@ -137,12 +134,16 @@ form input {
 .media_title {
     font-size: 24px;
     margin: 0;
+    color: #901C1C;
+
 }
 .media_likes {
     display: flex;
     align-items: center;
     font-size: 24px;
     gap: 10px;
+    color: #901C1C;
+
 }
 .media_legend {
     width: 350px;
@@ -238,12 +239,15 @@ object-fit: cover;
 /* Modal */
 
 #message {
-    height: 300px;
+height: 200px;
+width: 100% !important;
+display: inline-block;
+resize: none;
+border-radius: 5px;
+padding: 0px !important;
 }
 
-label{
-/* */
-}
+
 
 header {
     display: flex;
@@ -272,7 +276,7 @@ margin: 0;
 }
 
 .photograph_name {
-    font-size: 64px;
-    margin-bottom: 30px;
+    font-size: 40px;
+    margin: 20px 0;
 }
 

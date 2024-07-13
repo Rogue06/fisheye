@@ -63,53 +63,49 @@ function createMediaCard(media) {
   let mediaContent = "";
   if (media.image) {
     const imagePath = `../samples_photos/${media.image}`;
-    mediaContent = `<img src="${imagePath}" alt="${media.title}" class="media_image">`;
+    mediaContent = `<img src="${imagePath}" alt="${media.title}"  class="media_image">`;
   } else if (media.video) {
     const videoPath = `samples_photos/${media.video}`;
-    mediaContent = `<video controls class="media_video" onerror="this.onerror=null; this.src='assets/media/default-video.mp4';">
+    mediaContent = `<video class="media_video" onerror="this.onerror=null; this.src='assets/media/default-video.mp4';">
                       <source src="${videoPath}" type="video/mp4">
                     </video>`;
   }
 
   // Remplir le contenu de la carte média
   mediaCard.innerHTML = `
-    <div class="media_body">
-      ${mediaContent}
-    </div>
-    <div class="media_legend">
-      <h2 class="media_title">${media.title}</h2>
-      <span class="media_likes"><span class="media_likes_total">${media.likes}</span><i class="fa-regular fa-heart like-icon"></i></span>
-    </div>
-  `;
+ <div class="media_body">
+   ${mediaContent}
+ </div>
+ <div class="media_legend">
+   <h2 class="media_title">${media.title}</h2>
+   <span class="media_likes">${media.likes} <i class="fa-regular fa-heart like-icon"></i></span>
+ </div>
+`;
 
-  // état initial
-  let isLiked = false;
-  let totalLikes = media.likes;
+  const likesElement = mediaCard.querySelector(".media_likes");
 
-  // éléments à mettre à jour dans l'interface
-  const likesTotal = mediaCard.querySelector(".media_likes_total");
-  const likeIcon = mediaCard.querySelector(".like-icon");
-
-  // Ajouter l'écouteur d'événement pour l'icône de cœur
-  likeIcon.addEventListener("click", () => {
-    const likesElement = mediaCard.querySelector(".media_likes");
-    let likes = parseInt(likesElement.textContent.trim().split(" ")[0]);
-
-    if (likeIcon.classList.contains("fa-regular")) {
-      likeIcon.classList.remove("fa-regular");
-      likeIcon.classList.add("fa-solid");
-      likes++;
+  // fonction de mise à jour des likes à attacher à l'event "click"
+  const updateLikes = (event) => {
+    const isLiked = event.target.classList.contains("fa-regular");
+    if (isLiked) {
+      media.likes += 1;
     } else {
-      likeIcon.classList.remove("fa-solid");
-      likeIcon.classList.add("fa-regular");
-      likes--;
+      media.likes -= 1;
     }
 
-    likesElement.innerHTML = `${likes} <i class="fa-${
-      likeIcon.classList.contains("fa-solid") ? "solid" : "regular"
+    // on créé du HTML pour remplacer l'ancien, dont une nouvelle icône heart
+    likesElement.innerHTML = `${media.likes} <i class="fa-${
+      isLiked ? "solid" : "regular"
     } fa-heart like-icon"></i>`;
+    likesElement
+      .querySelector(".like-icon")
+      .addEventListener("click", updateLikes);
+
     updateTotalLikes();
-  });
+  };
+
+  // Ajouter l'écouteur d'événement pour l'icône de cœur actuelle
+  mediaCard.querySelector(".like-icon").addEventListener("click", updateLikes);
 
   return mediaCard;
 }
