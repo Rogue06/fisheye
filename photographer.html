@@ -14,11 +14,11 @@
     />
     <title>Fisheye - Photographe</title>
   </head>
-  <body>
+  <body id="body">
     <header>
       <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header"></div>
       <div class="sort-menu">
         <label for="sort-options">Trier par:</label>
@@ -32,17 +32,21 @@
       <div class="factory_medias"></div>
       <div class="infos_label"></div>
     </main>
-    <div id="contact_modal">
+    <div
+      id="contact_modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="contact_modal_title"
+    >
       <div class="modal">
         <header>
           <div class="title_container">
-            <h2>Contactez-moi</h2>
+            <h2 id="contact_modal_title">Contactez-moi</h2>
             <div class="photograph_name"></div>
           </div>
-
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-        <form>
+        <form id="contact_form">
           <div class="formData">
             <label>Prénom</label>
             <input
