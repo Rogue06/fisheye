@@ -46,3 +46,10 @@ function closeModal() {
   mainContent.setAttribute("aria-hidden", "false");
   mainContent.classList.remove("hidden"); // Afficher le contenu principal
 }
+
+// Close modal when esc key is pressed
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeModal();
+  }
+});
