@@ -63,10 +63,10 @@ function createMediaCard(media) {
   let mediaContent = "";
   if (media.image) {
     const imagePath = `../samples_photos/${media.image}`;
-    mediaContent = `<img src="${imagePath}" alt="${media.title}"  class="media_image">`;
+    mediaContent = `<img src="${imagePath}" alt="${media.title}"  class="media_image" tabindex="0">`;
   } else if (media.video) {
     const videoPath = `samples_photos/${media.video}`;
-    mediaContent = `<video class="media_video" onerror="this.onerror=null; this.src='assets/media/default-video.mp4';">
+    mediaContent = `<video class="media_video" tabindex="0" onerror="this.onerror=null; this.src='assets/media/default-video.mp4';">
                       <source src="${videoPath}" type="video/mp4">
                     </video>`;
   }
@@ -78,7 +78,7 @@ function createMediaCard(media) {
  </div>
  <div class="media_legend">
    <h2 class="media_title">${media.title}</h2>
-   <span class="media_likes">${media.likes} <i class="fa-regular fa-heart like-icon"></i></span>
+   <span class="media_likes">${media.likes} <i class="fa-regular fa-heart like-icon" tabindex="0"></i></span>
  </div>
 `;
 
@@ -171,23 +171,106 @@ function updateTotalLikes() {
   });
 }
 
-// Intégrer le tout
+// Ajout des écouteurs d'événements pour la lightbox
+function addLightboxEvents() {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxClose = lightbox.querySelector(".lightbox-close");
+  const lightboxPrev = lightbox.querySelector(".lightbox-prev");
+  const lightboxNext = lightbox.querySelector(".lightbox-next");
+  const lightboxImage = lightbox.querySelector(".lightbox-image");
+  const lightboxVideo = lightbox.querySelector(".lightbox-video");
+  let currentMediaIndex = 0;
+  let mediaElements = [];
+
+  function openLightbox(mediaElement, index) {
+    mediaElements = Array.from(
+      document.querySelectorAll(".media_image, .media_video")
+    );
+    currentMediaIndex = index;
+    const mediaContent = mediaElements[index];
+    if (mediaContent.tagName === "IMG") {
+      lightboxImage.src = mediaContent.src;
+      lightboxImage.alt = mediaContent.alt;
+      lightboxImage.classList.remove("hidden");
+      lightboxVideo.classList.add("hidden");
+    } else if (mediaContent.tagName === "VIDEO") {
+      lightboxVideo.src = mediaContent.querySelector("source").src;
+      lightboxVideo.classList.remove("hidden");
+      lightboxImage.classList.add("hidden");
+    }
+    lightbox.classList.remove("hidden");
+    lightbox.setAttribute("aria-hidden", "false");
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add("hidden");
+    lightbox.setAttribute("aria-hidden", "true");
+  }
+
+  function showPrevMedia() {
+    currentMediaIndex =
+      (currentMediaIndex - 1 + mediaElements.length) % mediaElements.length;
+    openLightbox(mediaElements[currentMediaIndex], currentMediaIndex);
+  }
+
+  function showNextMedia() {
+    currentMediaIndex = (currentMediaIndex + 1) % mediaElements.length;
+    openLightbox(mediaElements[currentMediaIndex], currentMediaIndex);
+  }
+
+  lightboxClose.addEventListener("click", closeLightbox);
+  lightboxPrev.addEventListener("click", showPrevMedia);
+  lightboxNext.addEventListener("click", showNextMedia);
+  document.addEventListener("keydown", (e) => {
+    if (lightbox.getAttribute("aria-hidden") === "false") {
+      switch (e.key) {
+        case "Escape":
+          closeLightbox();
+          break;
+        case "ArrowLeft":
+          showPrevMedia();
+          break;
+        case "ArrowRight":
+          showNextMedia();
+          break;
+      }
+    }
+  });
+
+  // Ajouter les événements pour ouvrir la lightbox
+  document
+    .querySelectorAll(".media_image, .media_video")
+    .forEach((element, index) => {
+      element.addEventListener("click", () => openLightbox(element, index));
+      element.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          openLightbox(element, index);
+        }
+      });
+    });
+}
+
+// Appeler la fonction d'ajout des événements de la lightbox après avoir affiché les médias
 async function initPhotographerPage() {
   const photographerId = getPhotographerIdFromUrl();
   const photographer = await getPhotographerById(photographerId);
   if (photographer) {
     displayPhotographerDetails(photographer);
-    displayPhotographerNameInModal(photographer); // Afficher le nom du photographe dans la modale de contact
+    displayPhotographerNameInModal(photographer);
 
     let mediaList = await getPhotographerMedia(photographerId);
-    displayPhotographerMedia(mediaList, photographer.folder);
+    displayPhotographerMedia(mediaList);
     updateTotalLikes();
 
-    // Écouteur d'événement pour le menu de tri
+    // Ajout des événements de lightbox après le rendu des médias
+    addLightboxEvents();
+
     const sortMenu = document.getElementById("sort-options");
     sortMenu.addEventListener("change", (event) => {
       const sortedMedia = sortMedia(mediaList, event.target.value);
-      displayPhotographerMedia(sortedMedia, photographer.folder);
+      displayPhotographerMedia(sortedMedia);
+      addLightboxEvents(); // Réattacher les événements après le tri
     });
   } else {
     console.error("Photographer not found");
