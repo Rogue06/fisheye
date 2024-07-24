@@ -275,6 +275,11 @@ header h2, img {
     margin: 20px 0;
 }
 
+.contact_button:hover {
+    background-color: #DB8876;
+    color: #000; 
+}
+
 .formData {
 margin: 0;
 }
@@ -283,7 +288,6 @@ margin: 0;
     font-size: 40px;
     margin: 20px 0;
 }
-
 
 /* Lightbox */
 
@@ -312,8 +316,8 @@ margin: 0;
   
   .lightbox-image,
   .lightbox-video {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 100vh;
+    max-height: 100vh;
   }
   
   .lightbox-close,

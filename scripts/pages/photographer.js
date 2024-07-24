@@ -183,6 +183,7 @@ function addLightboxEvents() {
   let mediaElements = [];
 
   function openLightbox(mediaElement, index) {
+    console.log("Salut");
     mediaElements = Array.from(
       document.querySelectorAll(".media_image, .media_video")
     );
@@ -200,7 +201,7 @@ function addLightboxEvents() {
     }
     lightbox.classList.remove("hidden");
     lightbox.setAttribute("aria-hidden", "false");
-    lightboxClose.focus();
+    /* lightboxClose.focus(); */
   }
 
   function closeLightbox() {
