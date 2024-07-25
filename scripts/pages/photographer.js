@@ -78,7 +78,7 @@ function createMediaCard(media) {
  </div>
  <div class="media_legend">
    <h2 class="media_title">${media.title}</h2>
-   <span class="media_likes">${media.likes} <i class="fa-regular fa-heart like-icon" tabindex="0"></i></span>
+   <span class="media_likes">${media.likes} <i alt="likes" class="fa-regular fa-heart like-icon" tabindex="0"></i></span>
  </div>
 `;
 
@@ -183,7 +183,6 @@ function addLightboxEvents() {
   let mediaElements = [];
 
   function openLightbox(mediaElement, index) {
-    console.log("Salut");
     mediaElements = Array.from(
       document.querySelectorAll(".media_image, .media_video")
     );
@@ -201,7 +200,6 @@ function addLightboxEvents() {
     }
     lightbox.classList.remove("hidden");
     lightbox.setAttribute("aria-hidden", "false");
-    /* lightboxClose.focus(); */
   }
 
   function closeLightbox() {

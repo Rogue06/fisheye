@@ -1,30 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact_form");
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Empêcher le comportement par défaut de soumission du formulaire
+  if (form) {
+    console.log("Form found"); // Vérifier si le formulaire est trouvé
 
-    console.log("Form submitted"); // Message de débogage
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // Empêcher le comportement par défaut de soumission du formulaire
+      console.log("Form submitted"); // Vérifier si l'événement de soumission est capturé
 
-    // Récupérer les valeurs des champs du formulaire
-    const firstName = document.getElementById("first").value;
-    const lastName = document.getElementById("last").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+      // Récupérer les valeurs des champs du formulaire
+      const firstName = document.getElementById("first").value;
+      const lastName = document.getElementById("last").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
 
-    // Stocker les valeurs dans la console
-    console.log("Prénom:", firstName);
-    console.log("Nom:", lastName);
-    console.log("E-mail:", email);
-    console.log("Message:", message);
+      // Afficher les valeurs dans la console
+      console.log("Prénom:", firstName);
+      console.log("Nom:", lastName);
+      console.log("E-mail:", email);
+      console.log("Message:", message);
 
-    // Récupérer l'ID du photographe depuis l'URL
-    const params = new URLSearchParams(window.location.search);
-    const photographerId = params.get("id");
+      // Simuler une redirection après 3 secondes pour observer les valeurs dans la console
+      setTimeout(() => {
+        // Récupérer l'ID du photographe depuis l'URL
+        const params = new URLSearchParams(window.location.search);
+        const photographerId = params.get("id");
 
-    // Rediriger l'utilisateur vers la page du photographe
-    window.location.href = `photographer.html?id=${photographerId}`;
-  });
+        // Rediriger l'utilisateur vers la page du photographe
+        window.location.href = `photographer.html?id=${photographerId}`;
+      }, 3000); // 3 secondes de délai avant la redirection
+    });
+  } else {
+    console.error("Form not found"); // Vérifier si le formulaire n'est pas trouvé
+  }
 });
 
 function displayModal() {
@@ -47,7 +55,7 @@ function closeModal() {
   mainContent.classList.remove("hidden"); // Afficher le contenu principal
 }
 
-// Close modal when esc key is pressed
+// Fermer la modal lorsque la touche Échap est pressée
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeModal();

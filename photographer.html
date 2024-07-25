@@ -45,6 +45,7 @@
             <div class="photograph_name"></div>
           </div>
           <img
+            aria-label="Close contact Form"
             class="cross_modal"
             src="assets/icons/close.svg"
             alt="close"
@@ -55,7 +56,7 @@
           <div class="formData">
             <label>Prénom</label>
             <input
-              class="text-control"
+              aria-label="First Name"
               type="text"
               id="first"
               name="first"
@@ -66,6 +67,7 @@
           <div class="formData">
             <label>Nom</label>
             <input
+              aria-label="Last Name"
               class="text-control"
               type="text"
               id="last"
@@ -77,6 +79,7 @@
           <div class="formData">
             <label>E-mail</label>
             <input
+              aria-label="Email"
               class="text-control"
               type="email"
               id="email"
@@ -88,25 +91,28 @@
           <div class="formData">
             <label>Votre message</label>
             <textarea
+              aria-label="Your message"
               class="text-control"
               id="message"
               name="message"
               required
             ></textarea>
           </div>
-          <button type="submit" class="contact_button">Envoyer</button>
+          <button type="submit" aria-label="Sent" class="form_button">
+            Envoyer
+          </button>
         </form>
       </div>
     </div>
     <!-- Lightbox-->
     <div id="lightbox" class="lightbox hidden" aria-hidden="true" role="dialog">
-      <button class="lightbox-close" aria-label="Fermer la lightbox">×</button>
-      <button class="lightbox-prev" aria-label="Precedent">‹</button>
+      <button class="lightbox-close" aria-label="Close dialog">×</button>
+      <button class="lightbox-prev" aria-label="Previous image">‹</button>
       <div class="lightbox-content">
         <img src="" alt="" class="lightbox-image" />
         <video class="lightbox-video" controls></video>
       </div>
-      <button class="lightbox-next" aria-label="Suivant">›</button>
+      <button class="lightbox-next" aria-label="Next image">›</button>
     </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

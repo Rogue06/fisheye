@@ -51,6 +51,16 @@ font-size: 64px;
     margin: 0 100px;
     padding-bottom : 50px;
 }
+.form_button {
+background-color: #901C1C;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 20px 0;
+}
 
 .content_button button{
     font-size: 20px;
@@ -79,12 +89,17 @@ font-size: 64px;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.cross_modal {
+padding-top: 60px;
+    cursor: pointer;
+}   
 
 .modal header {
     justify-content: space-between;
@@ -297,11 +312,11 @@ margin: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.815);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 99;
   }
   
   .lightbox.hidden {
@@ -316,8 +331,10 @@ margin: 0;
   
   .lightbox-image,
   .lightbox-video {
-    max-width: 100vh;
-    max-height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+
   }
   
   .lightbox-close,
