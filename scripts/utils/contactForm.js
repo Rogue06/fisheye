@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", function (event) {
       event.preventDefault(); // Empêcher le comportement par défaut de soumission du formulaire
-      console.log("Form submitted"); // Vérifier si l'événement de soumission est capturé
+      console.log("Form submitted");
 
       // Récupérer les valeurs des champs du formulaire
       const firstName = document.getElementById("first").value;
@@ -20,15 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("E-mail:", email);
       console.log("Message:", message);
 
-      // Simuler une redirection après 3 secondes pour observer les valeurs dans la console
-      setTimeout(() => {
-        // Récupérer l'ID du photographe depuis l'URL
-        const params = new URLSearchParams(window.location.search);
-        const photographerId = params.get("id");
-
-        // Rediriger l'utilisateur vers la page du photographe
-        window.location.href = `photographer.html?id=${photographerId}`;
-      }, 3000); // 3 secondes de délai avant la redirection
+      // Fermer la modal et réinitialiser le formulaire
+      closeModal();
+      form.reset();
     });
   } else {
     console.error("Form not found"); // Vérifier si le formulaire n'est pas trouvé
