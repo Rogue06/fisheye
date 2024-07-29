@@ -24,8 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
       closeModal();
       form.reset();
     });
-  } else {
-    console.error("Form not found"); // Vérifier si le formulaire n'est pas trouvé
   }
 });
 
