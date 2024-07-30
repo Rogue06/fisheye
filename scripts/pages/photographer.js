@@ -66,8 +66,8 @@ function createMediaCard(media) {
     mediaContent = `<img src="${imagePath}" alt="${media.title}" class="media_image" tabindex="0">`;
   } else if (media.video) {
     const videoPath = `samples_photos/${media.video}`;
-    mediaContent = `<video class="media_video" tabindex="0";">
-                      <source src="${videoPath}" type="video/mp4">
+    mediaContent = `<video class="media_video" tabindex="0" alt="${media.title}">
+                      <source src="${videoPath}" type="video/mp4" >
                     </video>`;
   }
 
@@ -193,6 +193,7 @@ function addLightboxEvents() {
   const lightboxNext = lightbox.querySelector(".lightbox-next");
   const lightboxImage = lightbox.querySelector(".lightbox-image");
   const lightboxVideo = lightbox.querySelector(".lightbox-video");
+  const lightboxTitle = document.querySelector(".lightbox-content-title h2");
   let currentMediaIndex = 0;
   let mediaElements = [];
 
@@ -202,6 +203,7 @@ function addLightboxEvents() {
     );
     currentMediaIndex = index;
     const mediaContent = mediaElements[index];
+
     if (mediaContent.tagName === "IMG") {
       lightboxImage.src = mediaContent.src;
       lightboxImage.alt = mediaContent.alt;
@@ -209,9 +211,14 @@ function addLightboxEvents() {
       lightboxVideo.classList.add("hidden");
     } else if (mediaContent.tagName === "VIDEO") {
       lightboxVideo.src = mediaContent.querySelector("source").src;
+      lightboxVideo.alt = mediaContent.alt;
       lightboxVideo.classList.remove("hidden");
       lightboxImage.classList.add("hidden");
     }
+
+    // Mettre à jour le titre du média dans la lightbox
+    lightboxTitle.textContent = mediaContent.alt;
+
     lightbox.classList.remove("hidden");
     lightbox.setAttribute("aria-hidden", "false");
   }

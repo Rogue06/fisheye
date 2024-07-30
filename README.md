@@ -13,4 +13,4 @@ Instructions :
 - cd fisheye
 - npm install
 - npm run dev
-  Let's work !
+  Let's go !
