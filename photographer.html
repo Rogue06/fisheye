@@ -107,15 +107,13 @@
       <button class="lightbox-close" aria-label="Close dialog">×</button>
       <button class="lightbox-prev" aria-label="Previous image">‹</button>
       <div class="lightbox-content">
-        <img src="" alt="" class="lightbox-image" />
-        <div class="lightbox-content-title"><h2></h2></div>
-
-
-        <video alt="" class="lightbox-video" controls autoplay></video>
-        <div class="lightbox-video-title">
-            <h2></h2>
+        <img src="" alt="" class="lightbox-image hidden" />
+        <div class="lightbox-content-title lightbox-image-title"><h2></h2></div>
+    
+        <video class="lightbox-video hidden" controls autoplay></video>
+        <div class="lightbox-content-title lightbox-video-title"><h2></h2></div>
+        <button class="lightbox-next" aria-label="Next image">›</button>
       </div>
-      <button class="lightbox-next" aria-label="Next image">›</button>
     </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

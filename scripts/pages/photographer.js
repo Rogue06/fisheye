@@ -66,7 +66,7 @@ function createMediaCard(media) {
     mediaContent = `<img src="${imagePath}" alt="${media.title}" class="media_image" tabindex="0">`;
   } else if (media.video) {
     const videoPath = `samples_photos/${media.video}`;
-    mediaContent = `<video class="media_video" tabindex="0" alt="${media.title}">
+    mediaContent = `<video class="media_video" tabindex="0" title="${media.title}">
                       <source src="${videoPath}" type="video/mp4" >
                     </video>`;
   }
