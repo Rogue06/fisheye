@@ -193,7 +193,7 @@ function addLightboxEvents() {
   const lightboxNext = lightbox.querySelector(".lightbox-next");
   const lightboxImage = lightbox.querySelector(".lightbox-image");
   const lightboxVideo = lightbox.querySelector(".lightbox-video");
-  const lightboxTitle = document.querySelector(".lightbox-content-title h2");
+  const lightboxTitle = document.querySelector(".lightbox-title h2");
   let currentMediaIndex = 0;
   let mediaElements = [];
 
@@ -209,15 +209,13 @@ function addLightboxEvents() {
       lightboxImage.alt = mediaContent.alt;
       lightboxImage.classList.remove("hidden");
       lightboxVideo.classList.add("hidden");
+      lightboxTitle.textContent = mediaContent.alt;
     } else if (mediaContent.tagName === "VIDEO") {
       lightboxVideo.src = mediaContent.querySelector("source").src;
-      lightboxVideo.alt = mediaContent.alt;
       lightboxVideo.classList.remove("hidden");
       lightboxImage.classList.add("hidden");
+      lightboxTitle.textContent = mediaContent.title;
     }
-
-    // Mettre à jour le titre du média dans la lightbox
-    lightboxTitle.textContent = mediaContent.alt;
 
     lightbox.classList.remove("hidden");
     lightbox.setAttribute("aria-hidden", "false");
