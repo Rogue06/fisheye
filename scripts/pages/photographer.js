@@ -53,7 +53,7 @@ function createMediaCard(media) {
   // Créer le contenu du média
   let mediaContent = "";
   if (media.image) {
-    const imagePath = `../samples_photos/${media.image}`;
+    const imagePath = `samples_photos/${media.image}`;
     mediaContent = `<img src="${imagePath}" alt="${media.title}" class="media_image" tabindex="0">`;
   } else if (media.video) {
     const videoPath = `samples_photos/${media.video}`;
