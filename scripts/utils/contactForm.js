@@ -1,12 +1,11 @@
+/* eslint-disable no-unused-vars */
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact_form");
 
   if (form) {
-    console.log("Form found"); // Vérifier si le formulaire est trouvé
-
     form.addEventListener("submit", function (event) {
       event.preventDefault(); // Empêcher le comportement par défaut de soumission du formulaire
-      console.log("Form submitted");
 
       // Récupérer les valeurs des champs du formulaire
       const firstName = document.getElementById("first").value;

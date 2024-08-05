@@ -1,12 +1,3 @@
-// Fetch photographers data
-fetch("data/photographers.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const photographers = data.photographers;
-    console.log("Photographers data:", photographers);
-  })
-  .catch((error) => console.error("Error fetching data:", error));
-
 // Récupérer l'ID de l'URL
 function getPhotographerIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -216,7 +207,6 @@ function addLightboxEvents() {
       lightboxImage.classList.add("hidden");
       lightboxTitle.textContent = mediaContent.title;
     }
-
     lightbox.classList.remove("hidden");
     lightbox.setAttribute("aria-hidden", "false");
   }
