@@ -3,14 +3,12 @@ async function getPhotographers() {
   try {
     const response = await fetch("data/photographers.json");
     const data = await response.json();
-    /*    console.log("Fetched data:", data); */
     return data;
   } catch (error) {
     console.error("Error fetching photographers:", error);
     return { photographers: [] };
   }
 }
-/* console.log(getPhotographers()); */
 
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
